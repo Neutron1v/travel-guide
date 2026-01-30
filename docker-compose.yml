@@ -1,0 +1,20 @@
+# Travel Planner - Backend only (frontend can be added later)
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./travel.db
+      - ART_INSTITUTE_API_BASE=https://api.artic.edu/api/v1
+    volumes:
+      - backend_data:/app
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  backend_data:

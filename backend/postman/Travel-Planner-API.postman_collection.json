@@ -1,0 +1,144 @@
+{
+  "info": {
+    "name": "Travel Planner API",
+    "description": "Travel Projects and Places (Art Institute of Chicago API). Base URL: http://localhost:8000",
+    "schema": "https://schema.postman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Travel Projects",
+      "item": [
+        {
+          "name": "Create project (no places)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Chicago Trip\",\n  \"description\": \"Museums and art\",\n  \"start_date\": \"2025-06-01\"\n}"
+            },
+            "url": "http://localhost:8000/projects/"
+          }
+        },
+        {
+          "name": "Create project with places",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Art Tour\",\n  \"description\": \"Art Institute highlights\",\n  \"places\": [\n    {\"external_id\": 27992, \"notes\": \"Must see\"},\n    {\"external_id\": 16568}\n  ]\n}"
+            },
+            "url": "http://localhost:8000/projects/"
+          }
+        },
+        {
+          "name": "List projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/projects/"
+          }
+        },
+        {
+          "name": "Get project by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/projects/1"
+          }
+        },
+        {
+          "name": "Update project",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated name\",\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": "http://localhost:8000/projects/1"
+          }
+        },
+        {
+          "name": "Delete project",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:8000/projects/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Project Places",
+      "item": [
+        {
+          "name": "Add place to project",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_id\": 27992,\n  \"notes\": \"Must see\"\n}"
+            },
+            "url": "http://localhost:8000/projects/1/places"
+          }
+        },
+        {
+          "name": "List places for project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/projects/1/places"
+          }
+        },
+        {
+          "name": "Get place by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8000/projects/1/places/1"
+          }
+        },
+        {
+          "name": "Update place (notes)",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": "http://localhost:8000/projects/1/places/1"
+          }
+        },
+        {
+          "name": "Mark place as visited",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"visited\": true\n}"
+            },
+            "url": "http://localhost:8000/projects/1/places/1"
+          }
+        }
+      ]
+    }
+  ]
+}
